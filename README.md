@@ -20,3 +20,17 @@ The `local_test` folder allows you to test the verification logic locally on you
 To run the app and see how it works, run this command:
 ```bash
 streamlit run app.py
+```
+
+# Demo
+
+## Login/Sign-Up page
+![image](https://github.com/user-attachments/assets/e2775e0a-a390-4b21-a733-5c8d6a1aaed2)
+
+## User Profile
+![image](https://github.com/user-attachments/assets/28c4d8eb-cab6-42ee-9c74-f8eca6153297)
+
+## Document Upload
+![image](https://github.com/user-attachments/assets/aca08bcb-0fb6-4684-81d0-0399985e7e6b)
+
+
