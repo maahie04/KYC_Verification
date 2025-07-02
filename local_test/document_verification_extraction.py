@@ -3,11 +3,14 @@ import os
 from datetime import datetime,timedelta
 import google.generativeai as genai
 from PIL import Image
-
+from dotenv import load_dotenv
+load_dotenv(".env")
 def configuration():
-    genai.configure(api_key="AIzaSyCO_BNhOG-6mL-rq4Y99Hws2PCak7iEfgs")  #Configuration of Google API key
+    fetched_api_key = os.getenv("GOOGLE_API_KEY")
+    genai.configure(api_key=fetched_api_key)
 
-def classify_indian_doc(image_path): #Initial Classification code, Classifies the document and extracts initial information
+
+def classify_indian_doc(image_path):
     try:
         model = genai.GenerativeModel('gemini-1.5-flash')
         prompt = """
@@ -37,7 +40,7 @@ def classify_indian_doc(image_path): #Initial Classification code, Classifies th
     except Exception as e:
         return {"error": str(e)}
 
-def additional_info(image_path, classification_result):#Additional information code, Extracts information specific to document
+def additional_info(image_path, classification_result):
     try:
         model = genai.GenerativeModel('gemini-1.5-flash')
         doc_type = classification_result.get("document_type", "")
