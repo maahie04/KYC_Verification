@@ -33,4 +33,20 @@ streamlit run app.py
 ## Document Upload
 ![image](https://github.com/user-attachments/assets/aca08bcb-0fb6-4684-81d0-0399985e7e6b)
 
+## Document Verification
+![Untitled design](https://github.com/user-attachments/assets/c3a6a70b-21c9-4b3b-87b5-e3dfd9b3eaf0)
+
+## Live Verification
+![Untitled design (1)](https://github.com/user-attachments/assets/bc13ad6b-1cf8-408b-95ca-46ba0d75ec6f)
+
+## Signature Upload
+![Untitled design (2)](https://github.com/user-attachments/assets/0db8e735-fcd9-47e0-9d5f-fc709b92ccaa)
+
+## Report Generation
+![Untitled design (3)](https://github.com/user-attachments/assets/ccbb5845-f964-476f-a004-0fc23f0b4ce8)
+
+## Report Example
+![image](https://github.com/user-attachments/assets/e7323fbd-fd3f-4663-8216-842f65b078af)
+
+
 
