@@ -1,3 +1,4 @@
+"""The sign-up/sign-in page, deals with creation or logging into your account, uses the auth_utils.py functions"""
 import streamlit as st
 from auth_utils import sign_up, sign_in
 def auth_screen():
