@@ -1,3 +1,4 @@
+"""Function used to extract information using Gen-AI, also check for expiry validity"""
 import json
 import os
 from datetime import datetime, timedelta
