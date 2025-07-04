@@ -1,3 +1,4 @@
+"""Utility functions for the upload of photos extracted from the ID's. To store the photos in supabase bucket and table."""
 import streamlit as st
 from supabase_client import supabase, handle_auth_failure
 import os
