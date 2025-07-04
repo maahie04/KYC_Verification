@@ -1,3 +1,4 @@
+"""Generates a downloadable report which tells the user about the status of verification of each step."""
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
