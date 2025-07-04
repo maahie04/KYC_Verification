@@ -1,3 +1,4 @@
+""" This is the main app page, it redirects to the specific pages, essentially is the back-bone of the web application"""
 import streamlit as st
 from profile_page import profile_page
 from document_extraction_page import document_extraction_page
