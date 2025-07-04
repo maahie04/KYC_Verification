@@ -1,3 +1,4 @@
+"""Extracts face from ID card, saves it if both haar and face_recognition identify the face"""
 import numpy as np
 import cv2
 from datetime import datetime
