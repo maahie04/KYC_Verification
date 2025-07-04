@@ -1,3 +1,4 @@
+"""Allows user to change their password if they wish to"""
 import streamlit as st
 from auth_utils import change_password
 
