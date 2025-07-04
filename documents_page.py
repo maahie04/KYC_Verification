@@ -1,3 +1,4 @@
+"""Page for uploading the documents which are later used to verify address and identity of individual."""
 import streamlit as st
 import os
 from document_utils import upload_document, get_user_documents, delete_document
