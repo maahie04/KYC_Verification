@@ -1,3 +1,4 @@
+"""Extracts information and faces from the documents, saves the faces in supabase storage and the extracted information in the session state"""
 import streamlit as st
 from document_information import configuration, extract_document_details
 from supabase_client import supabase
