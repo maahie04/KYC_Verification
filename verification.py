@@ -1,3 +1,4 @@
+"""Function which compares user entered information with extracted information from the ID cards and verifies if user is the same individual or not."""
 import google.generativeai as genai
 import json
 import os
