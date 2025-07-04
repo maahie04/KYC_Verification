@@ -101,42 +101,38 @@ def documents_page():
         if uploaded_docs["Drivers License"]:
             st.success("✓ Drivers License already uploaded")
         else:
-            license_files = st.file_uploader(
-                "Upload Drivers License (Front and Back)",
+            license_file = st.file_uploader(
+                "Upload Drivers License",
                 type=["png", "jpg", "jpeg", "pdf"],
-                accept_multiple_files=True,
                 key="license_uploader",
-                help="Upload both front and back of your Drivers License"
+                help="Upload your Drivers License"
             )
             if st.button("Upload Drivers License", key="upload_license"):
-                if license_files and len(license_files) >= 2:
-                    for uploaded_file in license_files:
-                        upload_document(user_id, "Drivers License", uploaded_file)
+                if license_file:
+                    upload_document(user_id, "Drivers License", license_file)
                     st.session_state.page = "documents"
                     st.rerun()
                 else:
-                    st.warning("Please upload both front and back of your Drivers License")
+                    st.warning("Please select a file to upload")
 
     with tab5:
         st.subheader("Voter ID Upload")
         if uploaded_docs["Voter ID"]:
             st.success("✓ Voter ID already uploaded")
         else:
-            voter_id_files = st.file_uploader(
-                "Upload Voter ID (Front and Back)",
+            voter_id_file = st.file_uploader(
+                "Upload Voter ID",
                 type=["png", "jpg", "jpeg", "pdf"],
-                accept_multiple_files=True,
                 key="voter_uploader",
-                help="Upload both front and back of your Voter ID"
+                help="Upload your Voter ID"
             )
             if st.button("Upload Voter ID", key="upload_voter"):
-                if voter_id_files and len(voter_id_files) >= 2:
-                    for uploaded_file in voter_id_files:
-                        upload_document(user_id, "Voter ID", uploaded_file)
+                if voter_id_file:
+                    upload_document(user_id, "Voter ID", voter_id_file)
                     st.session_state.page = "documents"
                     st.rerun()
                 else:
-                    st.warning("Please upload both front and back of your Voter ID")
+                    st.warning("Please select a file to upload")
 
     required_docs_uploaded = uploaded_docs["Aadhar Card"] and uploaded_docs["PAN Card"]
     optional_docs_uploaded = uploaded_docs["Passport"] or uploaded_docs["Drivers License"] or uploaded_docs["Voter ID"]
