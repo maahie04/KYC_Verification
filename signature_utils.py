@@ -1,3 +1,4 @@
+"""Utility functions for signature upload for storge in supabase bucket and table."""
 import streamlit as st
 from supabase_client import supabase, handle_auth_failure
 import os
