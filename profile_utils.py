@@ -1,3 +1,4 @@
+"""Utility functions for form information"""
 import streamlit as st
 from supabase_client import supabase, handle_auth_failure
 import datetime
