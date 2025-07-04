@@ -1,3 +1,4 @@
+"""Page for the Online KYC form, allows user to enter their own details which can be verfied using their IDs."""
 import streamlit as st
 import datetime
 from profile_utils import get_user_profile, create_user_profile
