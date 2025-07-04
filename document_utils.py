@@ -1,3 +1,4 @@
+"""Utility function for the document storage and deletion to supabase bucket and logging the documents in a table"""
 import streamlit as st
 from supabase_client import supabase, handle_auth_failure
 import os
