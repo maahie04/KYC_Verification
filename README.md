@@ -4,7 +4,21 @@ A Streamlit app prototype for a KYC (Know Your Customer) verification system.
 
 # Pre-requisites
    
-Ensure you have `streamlit`, `google_generativeai`, `streamlit_drawable_canvas`, `face_recognition`, `supabase` installed. Ensure to make a `.env` file with your gemini api key and a `.streamlit/secrets.toml` to store supabase url and key.
+1. Ensure you have `streamlit`, `google_generativeai`, `streamlit_drawable_canvas`, `face_recognition`, `supabase` installed.
+```bash
+pip install streamlit, google_generativeai, streamlit_drawable_canvas, face_recognition, supabase
+```
+2.  Ensure to make a `.env` file with your gemini api key and a `.streamlit/secrets.toml` to store supabase url and key.
+Make the `.env` file as:
+```bash
+GOOGLE_API_KEY=<Your API key>
+```
+Make the `.streamlit/secrets.toml` as:
+```bash
+[supabase]
+url = "<Your supabase URL>"
+key = "<Your supabase KEY>"
+```
 
 ## Local Testing
 
