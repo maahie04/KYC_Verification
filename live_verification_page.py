@@ -1,3 +1,4 @@
+"""Page for performing live verification of individual, done by matching ID and Profile photo 10 times in the span of 30 seconds. Will only pass if 10 matches are recived and mismatches are 2 or lesser."""
 import streamlit as st
 import face_recognition as fr
 import cv2
