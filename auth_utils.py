@@ -1,3 +1,4 @@
+"""Contains the authentication utility functions which help the user to log in or sign up"""
 import streamlit as st
 from supabase_client import supabase, handle_auth_failure
 import datetime
