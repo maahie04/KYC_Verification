@@ -1,3 +1,4 @@
+"""Allows user to submit their signatures using the touchpad and a picture of their handwritten signature. This will later be compared with their ID card signatures manually for final verification."""
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 from signature_utils import upload_signature, get_user_signatures
