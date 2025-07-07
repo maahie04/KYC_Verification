@@ -32,6 +32,7 @@ def document_extraction_page():
         extracted_faces = [] 
         verification_results = {}  
         existing_face_types = set()  
+        error_messages = []  # To collect all error messages
        
         with st.spinner("Extracting and verifying all documents..."):
             progress_bar = st.progress(0)
@@ -96,6 +97,7 @@ def document_extraction_page():
                     verification_results[doc_type] = validity
                     if validity and "INVALID" in validity:
                         verification_status = False
+                        error_messages.append(f"{doc_type}: {validity}")
                     
                     all_extracted_data[doc_type] = final_result
                     
@@ -105,8 +107,9 @@ def document_extraction_page():
                     st.error(f"Error processing {doc['document_type']}: {str(e)}")
                     verification_status = False
                     verification_results[doc['document_type']] = f"ERROR: {str(e)}"
+                    error_messages.append(f"{doc['document_type']}: {str(e)}")
                     continue
-         
+                
         if extracted_faces:
             with st.spinner("Uploading extracted faces..."):
                 for face_info in extracted_faces:
@@ -144,17 +147,22 @@ def document_extraction_page():
                         )
                         
                         if not upload_result:
-                            st.error(f"Failed to upload face image for {doc_type}")
+                            error_msg = f"Failed to upload face image for {doc_type}"
+                            st.error(error_msg)
+                            error_messages.append(error_msg)
                         else:
                             st.success(f"Successfully uploaded face image for {doc_type}")
                     
                     except Exception as e:
-                        st.error(f"Failed to upload face image for {doc_type}: {str(e)}")
+                        error_msg = f"Failed to upload face image for {doc_type}: {str(e)}"
+                        st.error(error_msg)
+                        error_messages.append(error_msg)
                         continue
         
         st.session_state.extracted_data = all_extracted_data
         st.session_state.verification_results = verification_results
         st.session_state.verified = verification_status
+        st.session_state.error_messages = error_messages  # Store errors in session state
         
         st.subheader("Document Verification Results")
         for doc_type, data in st.session_state.extracted_data.items():
@@ -198,34 +206,41 @@ def document_extraction_page():
        
         if st.session_state.verified:
             st.success("✅ All documents verified successfully!")
-           
-            st.subheader("Verification Summary")
-           
-            names = set()
-            for data in st.session_state.extracted_data.values():
-                doc_data = data.get('document_data', {})
-                name = doc_data.get('name')
-                if name and isinstance(name, str): 
-                    names.add(name.strip().lower())
-           
-            cols = st.columns(3)
-            with cols[0]:
-                st.metric("Documents Processed", len(existing_docs))
-           
-            with cols[1]:
-                expiring_count = sum(1 for data in st.session_state.extracted_data.values()
-                                   if data.get('expiry_info', {}).get('is_near_expiry', False))
-                st.metric("Expiring Soon", expiring_count)
-           
-            with cols[2]:
-                name_status = "✅ Consistent" if len(names) <= 1 else "⚠️ Inconsistent"
-                st.metric("Name Verification", name_status)
-               
-                if len(names) > 1:
-                    st.warning("Different names found across documents:")
-                    for name in names:
-                        st.write(f"- {name.title()}")
         else:
-            st.error("Some documents failed verification. Please check the errors above.")
+            st.error("❌ Some documents failed verification")
+            
+            # Display consolidated error list
+            st.subheader("Verification Issues Summary")
+            with st.expander("View all errors", expanded=True):
+                for error in st.session_state.error_messages:
+                    st.error(error)
+            
             if st.button("Try Again"):
                 st.experimental_rerun()
+            
+        st.subheader("Verification Summary")
+       
+        names = set()
+        for data in st.session_state.extracted_data.values():
+            doc_data = data.get('document_data', {})
+            name = doc_data.get('name')
+            if name and isinstance(name, str): 
+                names.add(name.strip().lower())
+       
+        cols = st.columns(3)
+        with cols[0]:
+            st.metric("Documents Processed", len(existing_docs))
+       
+        with cols[1]:
+            expiring_count = sum(1 for data in st.session_state.extracted_data.values()
+                               if data.get('expiry_info', {}).get('is_near_expiry', False))
+            st.metric("Expiring Soon", expiring_count)
+       
+        with cols[2]:
+            name_status = "✅ Consistent" if len(names) <= 1 else "⚠️ Inconsistent"
+            st.metric("Name Verification", name_status)
+           
+            if len(names) > 1:
+                st.warning("Different names found across documents:")
+                for name in names:
+                    st.write(f"- {name.title()}")
