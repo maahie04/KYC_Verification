@@ -43,7 +43,7 @@ streamlit run app.py
 ![image](https://github.com/user-attachments/assets/e2775e0a-a390-4b21-a733-5c8d6a1aaed2)
 
 ## User Profile
-![image](https://github.com/user-attachments/assets/28c4d8eb-cab6-42ee-9c74-f8eca6153297)
+![image](https://github.com/user-attachments/assets/cb2ae2e5-8098-4929-867b-fd51656fcf58)
 
 ## Document Upload
 ![image](https://github.com/user-attachments/assets/aca08bcb-0fb6-4684-81d0-0399985e7e6b)
