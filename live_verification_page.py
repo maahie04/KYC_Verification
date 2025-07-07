@@ -131,6 +131,7 @@ def perform_live_verification(profile_image_path, other_image_paths):
     overall_result = all(result == True for result in verification_results.values())
     return overall_result, verification_results
 
+
 def live_verification_page():
     if not st.session_state.get('verified', False):
         st.warning("Please complete document verification first!")
