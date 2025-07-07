@@ -176,28 +176,52 @@ def live_verification_page():
         if not image_paths:
             st.error("No other document images found for verification")
             st.stop()
-       
+        
+        
+        st.subheader("Reference Images for Verification")
+        cols = st.columns(len(image_paths) + 1)  
+        
+        
+        with cols[0]:
+            st.image(profile_image_path, caption="Your Profile Photo", width=150)
+        
+        
+        for i, (doc_type, image_path) in enumerate(image_paths.items(), start=1):
+            with cols[i]:
+                st.image(image_path, caption=f"{doc_type} Photo", width=150)
+        
         if st.button("Start Live Verification"):
-            with st.spinner("Verifying your identity against all document types..."):
-                verification_result, detailed_results = perform_live_verification(profile_image_path, image_paths)
-                st.session_state.live_verified = verification_result
-                st.session_state.verification_details = detailed_results
-                
-                if verification_result:
-                    st.success("Live verification successful!")
-                else:
-                    st.error("Live verification failed")
-                
-                st.subheader("Verification Details")
-                for doc_type, result in detailed_results.items():
-                    if result == True:
-                        st.success(f"✅ {doc_type}: Verified")
-                    elif result == "No face detected - skipped":
-                        st.warning(f"⚠️ {doc_type}: No face detected - skipped")
-                    elif isinstance(result, str):
-                        st.error(f"❌ {doc_type}: {result}")
+            
+            col1, col2 = st.columns([3, 1])
+            
+            with col1:
+                st.subheader("Live Verification")
+                with st.spinner("Verifying your identity against all document types..."):
+                    verification_result, detailed_results = perform_live_verification(profile_image_path, image_paths)
+                    st.session_state.live_verified = verification_result
+                    st.session_state.verification_details = detailed_results
+                    
+                    if verification_result:
+                        st.success("Live verification successful!")
                     else:
-                        st.error(f"❌ {doc_type}: Failed")
+                        st.error("Live verification failed")
+            
+            with col2:
+                st.subheader("Reference Images")
+                st.image(profile_image_path, caption="Profile", width=120)
+                for doc_type, image_path in image_paths.items():
+                    st.image(image_path, caption=doc_type, width=120)
+            
+            st.subheader("Verification Details")
+            for doc_type, result in detailed_results.items():
+                if result == True:
+                    st.success(f"✅ {doc_type}: Verified")
+                elif result == "No face detected - skipped":
+                    st.warning(f"⚠️ {doc_type}: No face detected - skipped")
+                elif isinstance(result, str):
+                    st.error(f"❌ {doc_type}: {result}")
+                else:
+                    st.error(f"❌ {doc_type}: Failed")
     
     if st.session_state.get('live_verified', False):
         st.write("You can now proceed to signature upload")
