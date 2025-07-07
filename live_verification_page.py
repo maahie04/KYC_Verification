@@ -132,7 +132,6 @@ def perform_live_verification(profile_image_path, other_image_paths):
     return overall_result, verification_results
 
 def live_verification_page():
-
     if not st.session_state.get('verified', False):
         st.warning("Please complete document verification first!")
         st.stop()
@@ -184,15 +183,16 @@ def live_verification_page():
                 st.session_state.verification_details = detailed_results
                 
                 if verification_result:
-                    st.success("Live verification successful for all document types!")
+                    st.success("Live verification successful!")
                 else:
-                    st.error("Live verification failed for some document types")
+                    st.error("Live verification failed")
                 
-                # Show detailed results
                 st.subheader("Verification Details")
                 for doc_type, result in detailed_results.items():
                     if result == True:
                         st.success(f"✅ {doc_type}: Verified")
+                    elif result == "No face detected - skipped":
+                        st.warning(f"⚠️ {doc_type}: No face detected - skipped")
                     elif isinstance(result, str):
                         st.error(f"❌ {doc_type}: {result}")
                     else:
