@@ -1,6 +1,6 @@
 # KYC Verification System
 
-A Streamlit app prototype for a KYC (Know Your Customer) verification system.
+A Streamlit app prototype for a KYC (Know Your Customer) verification system. [The system uses `python==3.11.8`]
 
 # Pre-requisites
    
