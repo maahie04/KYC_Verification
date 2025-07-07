@@ -18,6 +18,14 @@ def get_profile_photo_url(user_id):
     return None
 
 def profile_page():
+    st.info("""
+            Instructions:
+            1. Have a picture of your Aadhar (both sides), PAN and at least one more document (Driver's License, Passport or Voter ID) ready to be uploaded.
+            2. Have a passport sized picture ready. Ensure it is one that is high quality and should be no older than 6 months.
+            3. Use the navigation bar on the left to navigate to different sections of the verification process.
+            4. After all steps are completed, navigate to verification report page to get your final report.
+    """
+    )
     st.title("User Profile")
     st.write("Update your personal information.")
 
